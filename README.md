@@ -27,3 +27,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 -client and server components
 -context for global state managment
 -Taiwind as ui library
+
+##Live Link
+https://next-training-assignment.vercel.app/
