@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { MovieProvider } from "./context/MovieContext";
 import Header from "./components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,13 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <MovieProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <Header />
-          {children}
-        </body>
-      </html>
-    </MovieProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <Header />
+        {children}
+      </body>
+    </html>
   );
 }

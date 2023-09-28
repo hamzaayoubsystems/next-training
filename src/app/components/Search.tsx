@@ -1,25 +1,17 @@
 "use client";
-
-import { useContext } from "react";
-import MovieContext from "../context/MovieContext";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Search = () => {
-  const { searchMoviesHandler } =
-    useContext(MovieContext);
+  const router = useRouter();
+  const [search, setSearch] = useState("");
   return (
-    <div className="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
+    <div className="flex-1 flex justify-center px-2 lg:ml-6 ">
       <div className="max-w-lg w-full lg:max-w-xs">
-        <label
-          htmlFor="search"
-          className="sr-only"
-        >
+        <label htmlFor="search" className="sr-only">
           Search{" "}
         </label>
-        <form
-          method="get"
-          action="#"
-          className="relative z-50"
-        >
+        <form method="get" action="#" className="relative z-50">
           <button
             type="submit"
             id="searchsubmit"
@@ -37,12 +29,25 @@ const Search = () => {
               ></path>
             </svg>
           </button>
-          <input
-            type="search"
-            className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 b text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
-            placeholder="Search"
-            onChange={searchMoviesHandler}
-          />
+          <div className="relative">
+            <input
+              type="search"
+              className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 b text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out"
+              placeholder="Search"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 px-3 py-2 bg-blue-500 text-white rounded-r-md cursor-pointer"
+              disabled={search.length < 1}
+              onClick={() => {
+                router.push(`/search/${search}`);
+              }}
+            >
+              Go
+            </button>
+          </div>
         </form>
       </div>
     </div>
